@@ -10,29 +10,29 @@ including these functions into your workflow.
 ### Limiting the number of files in each slice with `multidar`
 
 Paste the function `multidar()` into your shell, or save its definition into your $HOME/.bashrc file and then enable it
-with source ~/.bashrc.
+with `source ~/.bashrc`.
 
 Now, running the command without arguments will show you the syntax:
 
 ```sh
-[user_name@localhost]$ multidar
+$ multidar
 Usage: multidar sourceDirectory maxNumberOfFilesPerArchive
 ```
 
 Let's assume that we have 1000 files inside test. Running the command
 
 ```sh
-[user_name@localhost]$ multidar test 300
+$ multidar test 300
 ```
 
 will produce four archives, each with its own basename and no more than 300 files inside. To restore from these
 archives, use a Bash loop:
 
 ```sh
-[user_name@localhost]$ for f in test-aa{a..d}
-                       do
-                         dar -R restore/ -O -w -x $f
-                       done
+$ for f in test-aa{a..d}
+  do
+      dar -R restore/ -O -w -x $f
+  done
 ```
 
 ### Backup
@@ -47,25 +47,25 @@ The function `backup()` provides an easy way to back up your directories. You ne
 To create the full backup `all0.*.dar`, type
 
 ```sh
-[user_name@localhost]$ backup 0
+$ backup 0
 ```
 
 To create the first incremental backup all1.*.dar, type
 
 ```sh
-[user_name@localhost]$ backup 1
+$ backup 1
 ```
 
 To create the second incremental backup all2.*.dar, type
 
 ```sh
-[user_name@localhost]$ backup 2
+$ backup 2
 ```
 
 and so on. To see all backups, type
 
 ```sh
-[user_name@localhost]$ backup show
+$ backup show
 ```
 
 If your current backup exceeds 5GB, more than one slice will be created.
@@ -73,7 +73,7 @@ If your current backup exceeds 5GB, more than one slice will be created.
 If you have too many incremental backups, you can always create a lower-numbered backup, e.g.
 
 ```sh
-[user_name@localhost]$ backup 1
+$ backup 1
 ```
 
 will overwrite the first incremental backup and will remove all higher-numbered backups.
@@ -90,14 +90,14 @@ variables:
 Search for a file `test999` inside your backups with:
 
 ```sh
-[user_name@localhost]$ restore -l test999
+$ restore -l test999
 ```
 
 This will scan both the full backup and all incremental backups. To extract this file, you can specify the backup number
 and the full path of the file as it appears in the archive, e.g.
 
 ```sh
-[user_name@localhost]$ restore -n 2 test/test999
+$ restore -n 2 test/test999
 ```
 
 However, this will not necessarily restore the file. This command will only restore the file if it was modified between
@@ -105,23 +105,23 @@ backups 1 and 2 and therefore included into backup 2. To restore the file for su
 from the full backup and then from all incremental backups in the chronological order:
 
 ```sh
-[user_name@localhost]$ restore -n 0 test/test999
-[user_name@localhost]$ restore -n 1 test/test999
-[user_name@localhost]$ restore -n 2 test/test999
+$ restore -n 0 test/test999
+$ restore -n 1 test/test999
+$ restore -n 2 test/test999
 ...
 ```
 
 or use the -x flag:
 
 ```sh
-[user_name@localhost]$ restore -x test/test999
+$ restore -x test/test999
 ```
 
 This last command will automatically go through all backups in the right order. To restore the entire directory, simply
 type:
 
 ```sh
-[user_name@localhost]$ restore -x test
+$ restore -x test
 ```
 
 Note that `restore()` does not accept Unix wild masks.
