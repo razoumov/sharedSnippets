@@ -1,9 +1,13 @@
 ### Build a container with precompiled OpenFOAM
 
-machine with sudo
+Log in to a machine with root access.
+
+```sh
 apptainer build --sandbox ubuntu.dir docker://ubuntu
 sudo apptainer shell --writable ubuntu.dir
+```
 
+```sh
 apt-get update
 apt-get -y install wget emacs ssh
 apt-get update
@@ -16,13 +20,17 @@ apt-get -y install openfoam10
 apt-get update
 apt-get install --only-upgrade openfoam10
 exit
+```
 
+```sh
 sudo apptainer build openfoamPrecompiled.sif ubuntu.dir
 scp openfoamPrecompiled.sif user01@localhost:scratch/containers           # terminally.officially.few.pigeon
 scp openfoamPrecompiled.sif user299@bobthewren.c3.ca:scratch/containers   # troglodytes     catherpes
+```
 
 ### Prepare and run a small serial OpenFOAM simulation
 
+```sh
 user01@cassiopeia
 apptainer shell openfoamPrecompiled.sif
 . /opt/openfoam10/etc/bashrc
@@ -34,9 +42,11 @@ blockMesh   # generate the mesh
 simpleFoam  # run the steady-state incompressible solver simpleFoam
 find . -type f | wc -l         # 49 files
 cd ..
+```
 
 ### Prepare and run a small parallel OpenFOAM simulation with an overlay
 
+```sh
 user01@cassiopeia
 module load apptainer/1.1.3
 apptainer shell --overlay output.img openfoamPrecompiled.sif
@@ -69,3 +79,4 @@ exit the job
 
 apptainer shell -B /scratch --overlay output.img ssh.sif
 ls /results/motorBike/processor*
+```
