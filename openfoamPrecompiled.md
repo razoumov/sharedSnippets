@@ -28,7 +28,7 @@ scp openfoamPrecompiled.sif user01@localhost:scratch/containers           # term
 scp openfoamPrecompiled.sif user299@bobthewren.c3.ca:scratch/containers   # troglodytes     catherpes
 ```
 
-### Prepare and run a small serial OpenFOAM simulation
+### Prepare and run a small serial OpenFOAM simulation on the host filesystem
 
 ```sh
 user01@cassiopeia
@@ -44,7 +44,7 @@ find . -type f | wc -l         # 49 files
 cd ..
 ```
 
-### Prepare and run a small parallel OpenFOAM simulation with an overlay
+### Prepare and run a small parallel OpenFOAM simulation inside an overlay
 
 ```sh
 user01@cassiopeia
