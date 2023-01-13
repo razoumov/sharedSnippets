@@ -24,8 +24,7 @@ exit
 
 ```sh
 sudo apptainer build openfoamPrecompiled.sif ubuntu.dir
-scp openfoamPrecompiled.sif user01@localhost:scratch/containers           # terminally.officially.few.pigeon
-scp openfoamPrecompiled.sif user299@bobthewren.c3.ca:scratch/containers   # troglodytes     catherpes
+scp openfoamPrecompiled.sif username@cluster:path
 ```
 
 ### Prepare and run a small serial OpenFOAM simulation on the host filesystem
