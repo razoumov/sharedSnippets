@@ -5,7 +5,7 @@ Log in to a machine with root access.
 ```sh
 cat << EOF > parallelContainer.def
 Bootstrap: docker
-From: ubuntu:24.04
+From: ubuntu:22.04
 %environment
 export OMPI_DIR=/opt/ompi
 export PATH=\$OMPI_DIR/bin:\$PATH
