@@ -9,7 +9,8 @@ sudo apptainer shell --writable ubuntu.dir
 
 ```sh
 apt-get update
-apt-get -y install wget emacs ssh
+apt-get -y install wget emacs
+apt-get -y install ssh     # if planning to use container's mpirun
 apt-get update
 sh -c "wget -O - https://dl.openfoam.org/gpg.key > /etc/apt/trusted.gpg.d/openfoam.asc"  # add the public key for the repository to enable package signatures to be verified
 chmod 755 /etc/apt/trusted.gpg.d/openfoam.asc

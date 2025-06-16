@@ -31,6 +31,7 @@ apt autoremove -y
 apt clean -y
 apt install -y build-essential libboost-all-dev libtbb-dev libtbb2
 apt install -y libucx-dev libucx0 ucx-utils
+apt install -y ssh     # if planning to use container's mpirun
 apt install -y libfabric-bin libfabric-dev libfabric1 hwloc-nox libpmi2-0 libpmi2-0-dev
 apt install -y rdma-core rdmacm-utils ibacm ibverbs-providers ibverbs-utils libibverbs-dev libibverbs1
 apt install -y librdmacm-dev librdmacm1 srptools libmunge-dev libmunge2 munge wget
@@ -54,6 +55,6 @@ EOF
 
 ```sh
 sudo apptainer build mpi.sif parallelContainer.def
-ls -lh mpi.sif   # 291M
+ls -lh mpi.sif   # 294M
 scp mpi.sif username@cluster:path
 ```
