@@ -1,6 +1,6 @@
 ### Build a container with MPI
 
-Log in to a machine with root access.
+Log in to a machine with root access and `apptainer` installed.
 
 ```sh
 cat << EOF > parallelContainer.def
