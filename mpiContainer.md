@@ -55,6 +55,6 @@ EOF
 
 ```sh
 sudo apptainer build mpi.sif parallelContainer.def
-ls -lh mpi.sif   # 302M
+ls -lh mpi.sif   # 313M
 scp mpi.sif username@cluster:path
 ```
