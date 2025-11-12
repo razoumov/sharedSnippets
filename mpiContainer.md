@@ -53,6 +53,8 @@ cd /tmp/ompi/openmpi-\$OMPI_VERSION
 EOF
 ```
 
+Note that this definition file will work with Ubuntu 22.04 but will break with Ubuntu 24.04 as the package names change there. It would not be so difficult to adapt the definition file to work in 24.04, but the beauty of Apptainer is that we don't have to -- we can bootstrap from 22.04 and use that in our build.
+
 ```sh
 sudo apptainer build mpi.sif parallelContainer.def
 ls -lh mpi.sif   # 313M
